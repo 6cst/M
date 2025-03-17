@@ -1,53 +1,85 @@
+pip install numpy
+
 import numpy as np
 
-arr1 = np.array([1, 2, 3, 4, 5])
-print("1D Array:", arr1)
+import sys
+list_1000000 = list(range(1000000))
+array_1000000 = np.arange(1000000)
+print(f"Size of list: {sys.getsizeof(list_1000000)} bytes")
+print(f"Size of array: {array_1000000.nbytes} bytes")
+import time
+start_time = time.time()
+sum_list = sum(list_1000000)
+end_time = time.time()
+list_sum_time = (end_time - start_time) * 1000
+start_time = time.time()
+sum_array = np.sum(array_1000000)
+end_time = time.time()
+array_sum_time = (end_time - start_time) * 1000
+print(f"Time to sum list: {list_sum_time:.2f} milliseconds")
+print(f"Time to sum array: {array_sum_time:.2f} milliseconds")
 
-arr2 = np.array([[1, 2], [3, 4]])
-print("2D Array:\n", arr2)
+# Create an array from 0 to 9
+arr = np.arange(10)
+print(arr)  # Output: [0 1 2 3 4 5 6 7 8 9]
 
-zeros_array = np.zeros((2, 3))
-print("Zeros Array:\n", zeros_array)
+# Create a 1D array
+arr_1d = np.array([1, 2, 3, 4, 5])
+print(arr_1d)       # Output: [1 2 3 4 5]
+print(arr_1d[0])    # Output: 1
 
-ones_array = np.ones((3, 3))
-print("Ones Array:\n", ones_array)
+# Create a 2D array
+arr_2d = np.array([[1, 2, 3],
+                   [4, 5, 6],
+                   [7, 8, 9]])
+print(arr_2d)
 
-arange_array = np.arange(0, 10, 2)
-print("Arange Array:", arange_array)
+# Create a 2D array
+arr_2d = np.array([[1, 2, 3], [4, 5, 6]])
 
-linspace_array = np.linspace(0, 1, 5)
-print("Linspace Array:", linspace_array)
+# Print the shape
+print("Shape of the array:", arr_2d.shape)  # Output: (2, 3)
 
-arr = np.array([10, 20, 30])
-print("Addition:", arr + 5)
-print("Multiplication:", arr * 2)
+# Create an array with a specific data type
+arr_float = np.array([1.1, 2.2, 3.3], dtype=np.float32)
+# Print the data type
+print("Data type of the array:", arr_float.dtype)  # Output: float32
 
-mat1 = np.array([[1, 2], [3, 4]])
-mat2 = np.array([[5, 6], [7, 8]])
-result = np.dot(mat1, mat2)
-print("Matrix Multiplication:\n", result)
+# Create a 3D array
+arr_3d = np.zeros((2, 3, 4))
+print(arr_3d)
 
-print("Element at index 1:", arr1[1])
+# Print the size
+print("Size of the array:", arr_3d.size)  # Output: 24 (2 * 3 * 4)
 
-sliced = arr1[1:4]
-print("Sliced Array:", sliced)
+# Create a 4D array
+arr_4d = np.ones((2, 3, 4, 5))
 
-reshaped = np.reshape(arr2, (4, 1))
-print("Reshaped Array:\n", reshaped)
+# Print the number of dimensions
+print("Number of dimensions:", arr_4d.ndim)  # Output: 4
 
-concatenated = np.concatenate((arr1, arange_array))
-print("Concatenated Array:", concatenated)
+# Create an array of integers
+arr_int = np.array([1, 2, 3])
+print(arr_int.dtype)
+# Print the item size
+print("Size of each element (in bytes):", arr_int.itemsize)  # Output: 8 (for 64-bit integer)
 
-arr = np.array([0, np.pi/2, np.pi])
-print("Sin:", np.sin(arr))
-print("Exponential:", np.exp(arr))
-print("Mean:", np.mean(arr1))
-print("Standard Deviation:", np.std(arr1))
+# Create an array with a specific data type
+arr_int32 = np.array([1, 2, 3], dtype=np.int32)
+arr_float64 = np.array([1.1, 2.2, 3.3], dtype=np.float64)
 
-print("Greater than 2:", arr1 > 2)
+print("Data type of arr_int32:", arr_int32.dtype)   # Output: int32
+print("Data type of arr_float64:", arr_float64.dtype)   # Output: float64
 
-random_array = np.random.rand(3, 3)
-print("Random Array:\n", random_array)
+# Create an array with different data types
+arr_int32 = np.array([1234567890, 1234567890], dtype=np.int32)
+arr_int64 = np.array([1234567890, 1234567890], dtype=np.int64)
 
-unsorted = np.array([3, 1, 2])
-print("Sorted Array:", np.sort(unsorted))
+print("Data type of arr_int32:", arr_int32.dtype)   # Output: int32
+print("Data type of arr_int64:", arr_int64.dtype)   # Output: int64
+
+print(arr_int32)
+
+# In this example, the `int32` data type has limited precision compared to `int64`, which can represent larger integers without loss of precision.
+
+
